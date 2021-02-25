@@ -9,6 +9,7 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
             if(isset($_POST["fteam"]) && $_POST["fteam"]!=" ")
             
             {
+		    /*take value from post req*/
                 $fteam=$_POST['fteam'];
                 $fteamscore=$_POST['fteamscore'];
                 $steam=$_POST['steam'];
