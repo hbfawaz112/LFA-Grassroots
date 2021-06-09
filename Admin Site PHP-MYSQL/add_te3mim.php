@@ -60,7 +60,7 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
       <a href="#">Menu</a>
     </header>
     <ul class="nav">
-      <li>
+     <li>
         <a href="first_page.php">
           <i class="zmdi zmdi-view-dashboard"></i> Home
         </a>
@@ -74,6 +74,8 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
         <a href="add_future_march.php">
           <i class="zmdi zmdi-widgets"></i> Add a future match
         </a>
+         
+        
       </li>
       <li>
         <a href="add_results.php">
@@ -81,12 +83,22 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
         </a>
       </li>
       <li>
+        <a href="See-rank.php">
+          <i class="zmdi zmdi-calendar"></i> See rank tables
+        </a>
+      </li>
+      
+      <li>
         <a href="add_team.php">
           <i class="zmdi zmdi-info-outline"></i> Add a new team
         </a>
       </li>
-     
-      </li>-->
+      <li>
+        <a href="list_of_academies.php">
+          <i class="zmdi zmdi-info-outline"></i> List Of Academies
+        </a>
+      </li>
+      
     </ul>
   </div>
   <!-- Content -->
@@ -110,12 +122,12 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
         <form action="add_te3mim.php" method="post" enctype="multipart/form-data">
   <div class="form-group" align="center">
     <label for="anname"><h3>Annoucement Name -  اسم التعميم </h3></label><br>
-    <input type="text" class="form-control" name="ann">
+    <input type="text" class="form-control" name="ann" required>
   </div>
 <br>
   <div align="center" class="form-group">
   
-<input type="file" name="pdffile" class="file-upload">
+<input type="file" name="pdffile" class="file-upload" required>
   </div>
   <br>
 <div align="center">
