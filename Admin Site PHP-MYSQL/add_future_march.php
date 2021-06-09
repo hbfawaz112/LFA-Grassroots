@@ -65,7 +65,7 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
       <a href="#">Menu</a>
     </header>
     <ul class="nav">
-      <li>
+    <li>
         <a href="first_page.php">
           <i class="zmdi zmdi-view-dashboard"></i> Home
         </a>
@@ -79,6 +79,8 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
         <a href="add_future_march.php">
           <i class="zmdi zmdi-widgets"></i> Add a future match
         </a>
+         
+        
       </li>
       <li>
         <a href="add_results.php">
@@ -86,20 +88,22 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
         </a>
       </li>
       <li>
+        <a href="See-rank.php">
+          <i class="zmdi zmdi-calendar"></i> See rank tables
+        </a>
+      </li>
+      
+      <li>
         <a href="add_team.php">
           <i class="zmdi zmdi-info-outline"></i> Add a new team
         </a>
       </li>
-     <!-- <li>
-        <a href="#">
-          <i class="zmdi zmdi-settings"></i> Services
+      <li>
+        <a href="list_of_academies.php">
+          <i class="zmdi zmdi-info-outline"></i> List Of Academies
         </a>
       </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-comment-more"></i> Contact
-        </a>
-      </li>-->
+      
     </ul>
   </div>
   <!-- Content -->
@@ -124,7 +128,7 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
       
   <div class="form-group">
     <label for="email">First Team</label>
-    <select name="fteam" class="form-control">
+    <select name="fteam" class="form-control" required>
     <?php
       
       if ($dbc = @mysqli_connect('localhost','root', ''))
@@ -132,13 +136,13 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
 		// Handle the error if the database couldnot be selected:
 		if (@mysqli_select_db($dbc,'flutter_football'))
 		{
-            $q1="SELECT * FROM profil_team ";
+            $q1="SELECT * FROM profil_team order by region";
             $r=mysqli_query($dbc,$q1);
 			if($r)
             {
                 while($row=mysqli_fetch_array($r,MYSQLI_ASSOC))
                     {
-                     echo  "<option value=\"$row[team_name]\" >$row[team_name]</option>"; 
+                     echo  "<option value=\"$row[team_name]\" >$row[team_name] / $row[region]</option>"; 
                     }
             }
             else{echo"probleemm1!!";}
@@ -155,7 +159,7 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
   
   <div class="form-group">
     <label for="pwd">Second Team</label>
-  <select name="steam" class="form-control">
+  <select name="steam" class="form-control" required>
     <?php
       
       if ($dbc = @mysqli_connect('localhost','root', ''))
@@ -163,13 +167,13 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
 		// Handle the error if the database couldnot be selected:
 		if (@mysqli_select_db($dbc,'flutter_football'))
 		{
-            $q2="SELECT * FROM profil_team ";
+            $q2="SELECT * FROM profil_team order by region";
             $r2=mysqli_query($dbc,$q2);
 			if($r2)
             {
                 while($row2=mysqli_fetch_array($r2,MYSQLI_ASSOC))
                     {
-                     echo  "<option value=\"$row2[team_name]\" >$row2[team_name]</option>"; 
+                     echo  "<option value=\"$row2[team_name]\" >$row2[team_name] / $row2[region]</option>"; 
                     }
             }
             else{echo"probleemm1!!";}
@@ -185,21 +189,21 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
           
   <div class="form-group">
     <label for="pwd">Match date:</label>
-    <input type="date" name="datematch" class="form-control" id="pwd">
+    <input type="date" name="datematch" class="form-control" id="pwd" required>
   </div>
   <div class="form-group">
     <label for="pwd">Match Time </label>
-    <input type="time" name="matchtime" class="form-control" id="pwd">
+    <input type="time" name="matchtime" class="form-control" id="pwd" required>
   </div>
 
 <div class="form-group">
     <label for="pwd">Staduim </label>
-    <input type="text" name="std" class="form-control" id="pwd">
+    <input type="text" name="std" class="form-control" id="pwd" required>
   </div>
   
-  <div class="form-group">
+  <div class="form-group" >
     <label for="pwd">Age (Birth) </label>
- <select name="birth" class="form-control">
+ <select name="birth" class="form-control" required>
 <option><h4>2008</h4></option>
 <option><h4>2009</h4></option>
 <option><h4>2010</h4></option>
@@ -210,7 +214,7 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
 
   <div class="form-group">
     <label for="pwd">Region(gouvernament) </label>
-  <select name="region" class="form-control">
+  <select name="region" class="form-control" required>
 <option value="beirut" ><h4>Beiruth gov.</h4></option>
 <option value="north"><h4>North Lebanon gov.</h4></option>
 <option value="mont"><h4>Mont Lebanon gov.</h4></option>
