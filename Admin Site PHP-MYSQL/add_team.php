@@ -12,6 +12,7 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
                 $admin=$_POST['admins'];
                 $phnumb=$_POST['phnumber'];
                 $loc=$_POST['location'];
+                $urlmaps=$_POST['mapurl'];
                 $email=$_POST['email'];
                 $reg=$_POST['region'];
                 
@@ -19,8 +20,8 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
                 $file=$_FILES["profile_pic"];
                 
                 
-                $query="INSERT INTO profil_team (team_name,adminstrator,phone,location,region,email) values 
-                ('$tname','$admin','$phnumb','$loc','$reg','$email')";
+                $query="INSERT INTO profil_team (team_name,adminstrator,phone,location,map_url,region,email) values 
+                ('$tname','$admin','$phnumb','$loc','$urlmaps','$reg','$email')";
                 
                 if(@mysqli_query($dbc,$query))
                     {
@@ -34,7 +35,26 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
                 </div>
                                        ";
                     
+                    $query2="INSERT INTO ranking2 (team_name,points,play,gf,ga,di,birth,region) values
+                    ('$tname',0,0,0,0,0,2008,'$reg')";
+                        if(@mysqli_query($dbc,$query2))
+                        {echo " ";}
                     
+                    $query3="INSERT INTO ranking2 (team_name,points,play,gf,ga,di,birth,region) values
+                    ('$tname',0,0,0,0,0,2009,'$reg')";
+                        if(@mysqli_query($dbc,$query3))
+                        {echo " ";}
+                    
+                        $query4="INSERT INTO ranking2 (team_name,points,play,gf,ga,di,birth,region) values
+                    ('$tname',0,0,0,0,0,2010,'$reg')";
+                        if(@mysqli_query($dbc,$query4))
+                        {echo " ";}
+                    
+                        $query5="INSERT INTO ranking2 (team_name,points,play,gf,ga,di,birth,region) values
+                    ('$tname',0,0,0,0,0,2011,'$reg')";
+                        if(@mysqli_query($dbc,$query5))
+                        {echo " ";}
+                            
                     
                     
                     }
@@ -71,7 +91,7 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
       <a href="#">Menu</a>
     </header>
     <ul class="nav">
-      <li>
+     <li>
         <a href="first_page.php">
           <i class="zmdi zmdi-view-dashboard"></i> Home
         </a>
@@ -85,6 +105,8 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
         <a href="add_future_march.php">
           <i class="zmdi zmdi-widgets"></i> Add a future match
         </a>
+         
+        
       </li>
       <li>
         <a href="add_results.php">
@@ -92,21 +114,23 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
         </a>
       </li>
       <li>
+        <a href="See-rank.php">
+          <i class="zmdi zmdi-calendar"></i> See rank tables
+        </a>
+      </li>
+      
+      <li>
         <a href="add_team.php">
           <i class="zmdi zmdi-info-outline"></i> Add a new team
         </a>
       </li>
-     <!-- <li>
-        <a href="#">
-          <i class="zmdi zmdi-settings"></i> Services
+      <li>
+        <a href="list_of_academies.php">
+          <i class="zmdi zmdi-info-outline"></i> List Of Academies
         </a>
       </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-comment-more"></i> Contact
-        </a>
-      </li>-->
-    </ul>
+      
+     </ul>
   </div>
   <!-- Content -->
   <div id="content">
@@ -129,36 +153,42 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
       
       <div class="form-group">
       <label for="profilepic">Picture of the academie (profile)</label>
-      <input type="file" name="profile_pic">
+      <input type="file" name="profile_pic" required> 
   </div>
   <div class="form-group">
     <label for="email">Team name</label>
-    <input type="text" class="form-control" name="tname">
+    <input type="text" class="form-control" name="tname" required>
   </div>
   <div class="form-group">
     <label for="pwd">Team adminstrator</label>
-    <input type="text" class="form-control" name="admins">
+    <input type="text" class="form-control" name="admins" required>
   </div>
   
   <div class="form-group">
     <label for="pwd">Phone Number</label>
-    <input type="text" class="form-control" name="phnumber">
+    <input type="number" class="form-control" name="phnumber" required>
   </div>
   <div class="form-group">
-    <label for="pwd">location </label>
-    <input type="text" class="form-control" name="location">
+    <label for="pwd">location</label>
+    <input type="text" class="form-control" name="location" required>
   </div>
+  
+  <div class="form-group">
+    <label for="pwd">URL-MAP : (For Google Maps) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>(Not Obligatory)</i></label>
+    <input type="text" class="form-control" name="mapurl" >
+  </div>
+  
 
 <div class="form-group">
     <label for="pwd">Email </label>
-    <input type="text" class="form-control" name="email">
+    <input type="text" class="form-control" name="email" required>
   </div>
   
   
 
   <div class="form-group">
     <label for="pwd">Region(gouvernament) </label>
-  <select name="region" class="form-control">
+  <select name="region" class="form-control" required>
 <option value="beirut" ><h4>Beiruth gov.</h4></option>
 <option value="north"><h4>North Lebanon gov.</h4></option>
 <option value="mont"><h4>Mont Lebanon gov.</h4></option>
