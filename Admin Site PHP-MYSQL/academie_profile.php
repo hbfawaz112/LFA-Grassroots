@@ -137,7 +137,7 @@ if ($dbc = @mysqli_connect('localhost','root', ''))
                          {
                              while($row1=mysqli_fetch_array($r,MYSQLI_ASSOC))
                                 {
-                                 $url="http://192.168.1.106:8080/flutter_football/profile_pictures/$row1[team_name].jpg";
+                                 $url="http://192.168.1.108:8080/flutter_football/profile_pictures/$row1[team_name].jpg";
                                     echo " <div align=\"center\">
                                     <img src=\"$url\" width=\"100\" height=\"100\">
                                          <br>
